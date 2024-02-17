@@ -6,6 +6,36 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+#Using argparse, modify your script to read command line arguments
+import argparse
+
+parser = argparse.ArgumentParser(description='Dataset analysis script')
+parser.add_argument('config', type=str, help='Path to the configuration file')
+args = parser.parse_args()
+
+# read arguments
+print(args.config) 
+
+import yaml
+
+config_paths = ['user_config.yml']
+config_paths += args.config
+
+config = {}
+for path in config_paths:
+    with open(path, 'r') as f:
+        this_config = yaml.safe_load(f)
+        config.update(this_config)
+
+print(config)
+
+
+
+
+
+
+
+
 #starting with reading each csv file into a dataframe, and later joining them
 df_2024 = pd.read_csv('https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/21c83b32-d5a8-4106-a54f-010dbe49f6f2/resource/ffd20867-6e3c-4074-8427-d63810edf231/download/Daily%20shelter%20overnight%20occupancy.csv')
 df_2024.head(2)
